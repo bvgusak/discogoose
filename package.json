@@ -1,0 +1,26 @@
+{
+  "name": "discogoose",
+  "version": "1.0.0",
+  "description": "Discord bot that can honk!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bvgusak/discogoose.git"
+  },
+  "keywords": [
+    "typescript",
+    "discord.js"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bvgusak/discogoose/issues"
+  },
+  "homepage": "https://github.com/bvgusak/discogoose#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
