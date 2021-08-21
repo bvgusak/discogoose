@@ -3,11 +3,21 @@
 Contributions to `discogoose` are much appreciated and welcome.
 As a contributor, please, follow guidelines and rules described in this document.
 
+# Workflow
+
+## Creating issues
+
+Use Github issues to create tasks, feature requests and bug reports. Each issue should be linked to `discogoose` project and have proper labels. If there's no assignee fro some issue it is open for development and anyone can work on it.
+
 ## Submitting Pull Request
 
 While working on a feature try to share your progress as early as possible. This will allow other developers give some feedback and prevent you from redoing some work later.
 
 Pull Request description should give solid understanding of new feature and how it was implemented. Feel free to leave todo list in PR description listing remaining work and progress.
+
+### Linking Pull Request with Issue
+
+Link issue that will be fixed by your PR (for example, `fixed #123`). Once this is done merging PR will automatically close linked issue. See [Official Github Documentation](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) for more details.
 
 ## Reviewing Pull Request
 
