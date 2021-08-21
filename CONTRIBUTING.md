@@ -17,7 +17,9 @@ Pull Request description should give solid understanding of new feature and how 
 
 ### Linking Pull Request with Issue
 
-Link issue that will be fixed by your PR (for example, `fixed #123`). Once this is done merging PR will automatically close linked issue. See [Official Github Documentation](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) for more details.
+Link issues that will be resolved by mentioning those in your PR description. Once this is done merging PR will automatically update linked issues. Issues can be linked manually or by using special keywords (e.g. `fixes #[ISSUE_NUMBER]`).
+
+See [Official Github Documentation](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) for more details.
 
 ## Reviewing Pull Request
 
