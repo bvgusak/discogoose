@@ -5,19 +5,36 @@ As a contributor, please, follow guidelines and rules described in this document
 
 ## Submitting Pull Request
 
-While working on a feature try to share your progress as early as possible. This will allow other developers give some feedback and prevent you from redoing some work later. Once main approach is defined and you have unrefactored implementation feel free to create Draft Pull Request and ask for early review.
+While working on a feature try to share your progress as early as possible. This will allow other developers give some feedback and prevent you from redoing some work later.
 
-Pull Request description should give solid undestanding of new feature and how it was implemented. Feel free to leave todo list in PR description showing remaining work to be done.
+Pull Request description should give solid understanding of new feature and how it was implemented. Feel free to leave todo list in PR description listing remaining work and progress.
 
 ## Reviewing Pull Request
 
 As a reviewer you are responsible for the feature as much as a contributor. Reviewers should provide valuable descriptive feedback with possibly some examples. Be kind and friendly to your teammates and always patient.
 
-### Coding rules
+# Coding rules
 
 ## Commit message
 
-Generally we should follow [Angular's commit message guidelines](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#)
+Generally we should follow a simplified [Angular's commit message guidelines](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#).
+Following commit message structure should be used:
+```
+<type>: <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+Allowed <type> can be one of following:
+* feat (feature)
+* fix (bug fix)
+* docs (documentation)
+* style (formatting, missing semi colons, …)
+* refactor
+* test (when adding missing tests)
+* chore (maintain)
 
 ## Branching strategy
 
