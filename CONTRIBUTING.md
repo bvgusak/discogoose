@@ -37,7 +37,7 @@ Following commit message structure should be used:
 <footer>
 ```
 
-Allowed <type> can be one of following:
+Allowed \<type> can be one of following:
 * feat (feature)
 * fix (bug fix)
 * docs (documentation)
@@ -51,14 +51,14 @@ Allowed <type> can be one of following:
 Once you start developing new feature create your dev branch from `main`. Use following rules when naming your branch:
 ```
 <dev-initials>/<type>/<branch-desc>
-```, 
+```
 where
-* <dev initials> - initials of branch author/developer
-* <type> - describes the kind of change that will be done in this branch (same as commit message type)
-* <branch-desc> - short descriptive branch name
+* \<dev-initials> - initials of branch author/developer
+* \<type> - describes the kind of change that will be done in this branch (same as commit message type)
+* \<branch-desc> - short descriptive branch name
 
 For example, developer John Doe adding new feature can create following branch:
 ```
-git checkout -b jd/feat/adding-user-counts 
+git checkout -b jd/feat/adds-user-counts 
 ```
 
