@@ -10,3 +10,5 @@ updates:
     target-branch: "main"
     reviewers:
       - "bvgusak"
+      - "pokhylko"
+      - "YaroslavMakarov"
