@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    open-pull-request-limit: 15
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Europe/Kiev"
+    target-branch: "main"
+    reviewers:
+      - "bvgusak"
