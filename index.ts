@@ -9,15 +9,15 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
-const token = process.env.TOKEN
+const token = process.env.TOKEN;
 
 // Login to Discord with your client's token
 client.login(token);
 
-client.on("messageCreate", msg => {
+client.on('messageCreate', (msg) => {
     const mgsLowerCase = msg.content.toLocaleLowerCase();
 
-    if (mgsLowerCase === "honk") {
-        msg.reply("Honk!")
+    if (mgsLowerCase === 'honk') {
+        msg.reply('Honk!');
     }
-})
+});
