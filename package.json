@@ -22,5 +22,8 @@
   "homepage": "https://github.com/bvgusak/discogoose#readme",
   "devDependencies": {
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "discord.js": "^13.1.0"
   }
 }
