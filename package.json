@@ -4,6 +4,7 @@
   "description": "Discord bot that can honk!",
   "main": "index.js",
   "scripts": {
+    "start": "npx tsc && node build/index.js",
     "build": "echo \"No build script specified\"",
     "lint": "eslint .",
     "test": "echo \"No test script specified\"",
