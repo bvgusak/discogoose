@@ -4,6 +4,7 @@
   "description": "Discord bot that can honk!",
   "main": "index.js",
   "scripts": {
+    "start": "npx tsc && node build/index.js",
     "build": "echo \"No build script specified\"",
     "lint": "eslint .",
     "test": "echo \"No test script specified\"",
@@ -33,5 +34,8 @@
     "eslint-plugin-prettier": "^3.4.1",
     "prettier": "^2.3.2",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "discord.js": "^13.1.0"
   }
 }
