@@ -18,3 +18,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: cat dependabot.json
+  test:
+    strategy:
+      matrix: ${{ fromJson(["foo", "bar"]) }}
+
+     steps:
+       - run: echo ${{ matrix.package }}
