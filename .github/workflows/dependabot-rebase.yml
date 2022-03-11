@@ -12,9 +12,15 @@ on:
 jobs:
   dependabot-pr-base:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ["foo", "bar"]
     steps:
-      - uses: actions/checkout@v3
-      - run:  gh pr list --author 'app/dependabot' --state open --json id > dependabot.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: cat dependabot.json
+      - run: echo ${{ matrix.package }}
+    # steps:
+    #   - uses: actions/checkout@v3
+    #   - run:  gh pr list --author 'app/dependabot' --state open --json id > dependabot.json
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   - run: cat dependabot.json
+
