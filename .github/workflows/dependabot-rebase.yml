@@ -1,0 +1,20 @@
+# This is a test workflow
+
+name: Update dependabot PRs base branch
+on:
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: 'Pull request ID'
+        required: true 
+        type: string
+
+jobs:
+  dependabot-pr-base:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run:  gh pr list --author 'app/dependabot' --state open --json id > dependabot.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: cat dependabot.json
