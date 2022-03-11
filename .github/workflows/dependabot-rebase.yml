@@ -13,7 +13,8 @@ jobs:
   dependabot-pr-base:
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(["foo", "bar"]) }}
+      matrix:
+        package: ["foo", "bar"]
     steps:
       - run: echo ${{ matrix.package }}
     # steps:
