@@ -25,6 +25,8 @@ jobs:
     needs:
       - fetch-open-prs
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write 
     strategy:
       matrix:
         id: ${{fromJson(needs.fetch-open-prs.outputs.prs)}}    
