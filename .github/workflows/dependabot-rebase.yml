@@ -1,6 +1,6 @@
 # This is a test workflow
 
-name: Update dependabot PRs base branch
+name: Update base branch for dependabot open pull requests
 on:
   workflow_dispatch:
     inputs:
@@ -16,7 +16,7 @@ jobs:
       prs: ${{ steps.get-prs-matrix.outputs.prs }}
     steps:
       - uses: actions/checkout@v3
-      - name: Get PRs
+      - name: Fetch all open dependabot pull-requests
         id: get-prs-matrix
         run: echo "::set-output name=prs::$(gh pr list --author 'app/dependabot' --state open --json number --jq 'map(.number)')"
         env:
@@ -31,9 +31,8 @@ jobs:
       matrix:
         id: ${{fromJson(needs.fetch-open-prs.outputs.prs)}}    
     steps:
-      - run: echo ${{ matrix.id }}
       - uses: actions/checkout@v3
-      - name: Update PRs base branch
+      - name: Update pull request base branch
         run: gh pr edit ${{ matrix.id }} --base ${{ github.event.inputs.branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
