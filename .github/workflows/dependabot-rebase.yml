@@ -10,11 +10,21 @@ on:
         type: string
 
 jobs:
+  fetch-open-prs:
+    runs-on: ubuntu-latest
+    outputs:
+      prs: ${{ steps.get-prs-matrix.outputs.prs }}
+    steps:
+      - name: Get PRs
+        id: get-prs-matrix
+        run: echo "::set-output name=prs::$(gh pr list --author 'app/dependabot' --state open --json id)"
   dependabot-pr-base:
+    needs:
+      - fetch-open-prs
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ["foo", "bar"]
+        package: ${{fromJson(needs.fetch-open-prs.outputs.prs)}}    
     steps:
       - run: echo ${{ matrix.package }}
     # steps:
