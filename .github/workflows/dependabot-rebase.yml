@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Get PRs
         id: get-prs-matrix
-        run: echo "::set-output name=prs::$( gh pr list --app 'dependabot' --state open --json id --jq 'map(.id)')"
+        run: echo "::set-output name=prs::$(gh pr list --author 'app/dependabot' --state open --json id --jq 'map(.id)')"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   dependabot-pr-base:
