@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Base branch'
+        description: 'Change to base branch'
         required: true 
         type: string
 
