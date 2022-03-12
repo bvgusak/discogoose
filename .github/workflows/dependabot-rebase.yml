@@ -4,8 +4,8 @@ name: Update dependabot PRs base branch
 on:
   workflow_dispatch:
     inputs:
-      pr:
-        description: 'Pull request ID'
+      branch:
+        description: 'Base branch'
         required: true 
         type: string
 
@@ -21,19 +21,18 @@ jobs:
         run: echo "::set-output name=prs::$(gh pr list --author 'app/dependabot' --state open --json id --jq 'map(.id)')"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  dependabot-pr-base:
+  change-pr-base-branch:
     needs:
       - fetch-open-prs
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ${{fromJson(needs.fetch-open-prs.outputs.prs)}}    
+        id: ${{fromJson(needs.fetch-open-prs.outputs.prs)}}    
     steps:
-      - run: echo ${{ matrix.package }}
-    # steps:
-    #   - uses: actions/checkout@v3
-    #   - run:  gh pr list --author 'app/dependabot' --state open --json id > dependabot.json
-    #     env:
-    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   - run: cat dependabot.json
+      - run: echo ${{ matrix.id }}
+      - uses: actions/checkout@v3
+      - name: Update PRs base branch
+        run: gh pr edit ${{ matrix.id }} --base ${{ github.event.inputs.branch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
