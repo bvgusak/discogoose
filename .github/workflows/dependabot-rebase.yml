@@ -49,6 +49,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "Change base branch of pull request #${{ matrix.id }} to ${{ github.event.inputs.base-branch }}"
-      - run: gh pr edit ${{ matrix.id }} --base ${{ github.event.inputs.base-branch }}
+        run: gh pr edit ${{ matrix.id }} --base ${{ github.event.inputs.base-branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
