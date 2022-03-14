@@ -19,6 +19,7 @@ jobs:
         run: git ls-remote --exit-code --heads ${{ github.repositoryUrl }} ${{ github.event.inputs.base-branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   fetch-open-depedabot-pull-requests:
     name: "Fetch ids of all Dependabot's open pull requests"
     needs:
@@ -34,6 +35,7 @@ jobs:
         run: echo "::set-output name=ids::$(gh pr list --author 'app/dependabot' --state open --json number --jq 'map(.number)')"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   change-pull-requests-base-branch:
     name: "Change base branch of pull request"
     needs:
