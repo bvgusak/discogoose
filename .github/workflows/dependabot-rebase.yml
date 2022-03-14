@@ -1,7 +1,7 @@
 # Workflow that updates base branch for all open dependabot pull requests.
 # Should be triggerred manually by providing new base branch name.
 
-name: "Change Dependabot's open pull requests base branch"
+name: Change Dependabot\'s open pull requests base branch
 on:
   workflow_dispatch:
     inputs:
@@ -12,28 +12,30 @@ on:
 
 jobs:
   check-base-branch-exists:
-    name: Verify branch "${{ github.event.inputs.base-branch }}" exists in ${{ github.repository }}
+    name: Verify input branch exists
     runs-on: ubuntu-latest
     steps:
-      - run: git ls-remote --exit-code --heads ${{ github.repositoryUrl }} ${{ github.event.inputs.base-branch }}
+      - name: Verify branch "${{ github.event.inputs.base-branch }}" exists in ${{ github.repository }}
+        run: git ls-remote --exit-code --heads ${{ github.repositoryUrl }} ${{ github.event.inputs.base-branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   fetch-open-depedabot-pull-requests:
-    name: "Fetch ids of all Dependabot's open pull requests"
+    name: Fetch ids of all Dependabot\'s open pull requests
     needs:
       - check-base-branch-exists
     runs-on: ubuntu-latest
     outputs:
-      description: "List of Dependabot's open pull requests ids"
+      description: List of Dependabot\'s open pull requests ids
       ids: ${{ steps.pull-requests-list.outputs.ids }}
     steps:
       - uses: actions/checkout@v3
-      - id: pull-requests-list
+      - name: Fetch and save ids of all Dependabot\'s open pull requests
+        id: pull-requests-list
         run: echo "::set-output name=ids::$(gh pr list --author 'app/dependabot' --state open --json number --jq 'map(.number)')"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   change-pull-requests-base-branch:
-    name: Change base branch of pull request #${{ matrix.id }} to "${{ github.event.inputs.base-branch }}"
+    name: Change base branch of pull request
     needs:
       - fetch-open-depedabot-pull-requests
     runs-on: ubuntu-latest
@@ -44,6 +46,7 @@ jobs:
         id: ${{fromJson(needs.fetch-open-depedabot-pull-requests.outputs.ids)}}    
     steps:
       - uses: actions/checkout@v3
+      - name: Change base branch of pull request #${{ matrix.id }} to "${{ github.event.inputs.base-branch }}"
       - run: gh pr edit ${{ matrix.id }} --base ${{ github.event.inputs.base-branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
