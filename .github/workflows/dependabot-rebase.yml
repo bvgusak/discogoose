@@ -15,12 +15,13 @@ jobs:
     name: Check that branch ${{ github.event.inputs.base-branch }} exists
     runs-on: ubuntu-latest
     steps:
-      - name: Check that branch ${{ github.event.inputs.base-branch }} exists in ${{ github.repository }}
-        run: git ls-remote --exit-code --heads ${{ github.repositoryUrl }} ${{ github.event.inputs.base-branch }}
+      - run: git ls-remote --exit-code --heads ${{ github.repositoryUrl }} ${{ github.event.inputs.base-branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   fetch-open-depedabot-pull-requests:
     name: Fetch ids of all open dependabot pull requests
+    needs:
+      - check-base-branch-exists
     runs-on: ubuntu-latest
     outputs:
       description: List of open dependabot pull requests ids
