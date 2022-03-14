@@ -1,39 +1,40 @@
-# This is a test workflow
+# Workflow that updates base branch for all open dependabot pull requests.
+# Should be triggerred manually by providing new base branch name.
 
-name: Update base branch for dependabot open pull requests
+name: Change base branch for all open dependabot pull requests
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'Change to base branch'
+      base-branch:
+        description: 'New base branch name'
         required: true 
         type: string
 
 jobs:
-  fetch-open-prs:
+  fetch-open-depedabot-pull-requests:
     runs-on: ubuntu-latest
     outputs:
-      prs: ${{ steps.get-prs-matrix.outputs.prs }}
+      description: List of open dependabot pull requests ids
+      ids: ${{ steps.pull-requests-list.outputs.ids }}
     steps:
       - uses: actions/checkout@v3
-      - name: Fetch all open dependabot pull-requests
-        id: get-prs-matrix
-        run: echo "::set-output name=prs::$(gh pr list --author 'app/dependabot' --state open --json number --jq 'map(.number)')"
+      - name: Fetch all open dependabot pull requests ids
+        id: pull-requests-list
+        run: echo "::set-output name=ids::$(gh pr list --author 'app/dependabot' --state open --json number --jq 'map(.number)')"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  change-pr-base-branch:
+  change-pull-requests-base-branch:
     needs:
-      - fetch-open-prs
+      - fetch-open-depedabot-pull-requests
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write 
     strategy:
       matrix:
-        id: ${{fromJson(needs.fetch-open-prs.outputs.prs)}}    
+        id: ${{fromJson(needs.fetch-open-depedabot-pull-requests.outputs.ids)}}    
     steps:
       - uses: actions/checkout@v3
       - name: Update pull request base branch
-        run: gh pr edit ${{ matrix.id }} --base ${{ github.event.inputs.branch }}
+        run: gh pr edit ${{ matrix.id }} --base ${{ github.event.inputs.base-branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
