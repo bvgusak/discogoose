@@ -1,7 +1,7 @@
 # Workflow that updates base branch for all open dependabot pull requests.
 # Should be triggerred manually by providing new base branch name.
 
-name: Change base branch for all open dependabot pull requests
+name: Change base branch for all open dependabot pull requests ${{ github.event.inputs.base-branch }}
 on:
   workflow_dispatch:
     inputs:
