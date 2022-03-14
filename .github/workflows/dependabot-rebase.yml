@@ -12,6 +12,7 @@ on:
 
 jobs:
   fetch-open-depedabot-pull-requests:
+    name: Fetch ids of all open dependabot pull requests
     runs-on: ubuntu-latest
     outputs:
       description: List of open dependabot pull requests ids
@@ -24,6 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   change-pull-requests-base-branch:
+    name: Change base branch of pull request #${{ matrix.id }} to ${{ github.event.inputs.base-branch }}
     needs:
       - fetch-open-depedabot-pull-requests
     runs-on: ubuntu-latest
